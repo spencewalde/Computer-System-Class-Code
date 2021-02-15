@@ -1,0 +1,104 @@
+.data
+	out: .asciz "%d\n"
+	f: .int 0
+	g: .int 65
+	h: .int 40
+	i: .int 3
+	j: .int 4 
+	.global main
+	.extern printf
+
+main:
+	push {lr}
+	ldr r4, =i
+	ldr r4, [r4]
+	ldr r5, =j
+	ldr r5, [r5]
+	ldr r6, =g
+	ldr r6, [r6]
+	ldr r7, =h
+	ldr r7, [r7]
+
+		
+	@Code the following IF statement with no more than five instructions.
+	@Note: A label without instruction is not counted toward five.
+	@IF i==j THEN f=g+h ELSE f=g-h
+	
+	cmp r4, r5
+    beq branch:
+	add r1 , r6,r7
+
+	
+  
+	branch:
+    sub r1, r6,r7
+
+	@Save the result in variable f
+	ldr r9, =f
+	str r8, [r9]
+
+	@Display result
+	push {r0, r1}	@need save r0, r1 before calling printf
+	ldr r0, =out	@r0 holds format string for printf
+	ldr r1, =f
+	ldr r1, [r1]
+	bl printf
+	pop {r0, r1}
+
+	pop {lr}
+	bx lr
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+.data
+	out: .asciz "%d\n"
+	f: .int 0
+	g: .int 65
+	h: .int 40
+	i: .int 3
+	j: .int 4 
+	.global main
+	.extern printf
+
+main:
+	push {lr}
+	ldr r4, =i
+	ldr r4, [r4]
+	ldr r5, =j
+	ldr r5, [r5]
+	ldr r6, =g
+	ldr r6, [r6]
+	ldr r7, =h
+	ldr r7, [r7]
+
+		
+	@Code the following IF statement with no more than five instructions.
+	@Note: A label without instruction is not counted toward five.
+	@IF i==j THEN f=g+h ELSE f=g-h
+	
+	
+	cmp r4,r5
+    bne branch:
+    sub r1, r6,r7
+
+    branch:
+    add r1 ,r6,r7
+
+
+	@Save the result in variable f
+	ldr r9, =f
+	str r8, [r9]
+
+	@Display result
+	push {r0, r1}	@need save r0, r1 before calling printf
+	ldr r0, =out	@r0 holds format string for printf
+	ldr r1, =f
+	ldr r1, [r1]
+	bl printf
+	pop {r0, r1}
+
+	pop {lr}
+	bx lr
+
